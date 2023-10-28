@@ -1,0 +1,14 @@
+# Set the default behavior for all files to use CRLF line endings on Windows
+* text eol=crlf
+
+# Explicitly specify files that should always use CRLF line endings
+*.js text eol=crlf
+*.json text eol=crlf
+*.css text eol=crlf
+*.html text eol=crlf
+*.md text eol=crlf
+
+# Explicitly specify binary files that should not be changed
+*.jpg binary
+*.png binary
+*.pdf binary

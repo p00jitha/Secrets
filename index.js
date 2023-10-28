@@ -38,9 +38,13 @@ app.get('/',function(req,res){
 app.get('/login',function(req,res){
     res.render('login');
 })
-
+ 
 app.get('/register',function(req,res){
     res.render('register');
+}) 
+
+app.get('/forgot',(req,res)=>{
+    res.render('forgot');
 })
 
 app.post('/register',async(req,res) => {
@@ -92,6 +96,33 @@ app.post('/login',async(req,res)=>{
            res.status(500).send('Login failed');
     }
 });
+
+
+app.post('/forgot',async(req,res)=>{
+const {username,password} = req.body;
+try{
+    const user = await User.findOne({email:username});
+    if(user){
+        const newpassword = await bcrypt.hash(password, 10);
+        User.updateOne({ email: username }, { $set: { password: newpassword } })
+       .then(() => {
+           res.render('login')
+       })
+       .catch(err => {
+          console.log(err)
+       });
+    }
+    else
+    {
+            res.status(401).send('User not found');
+    }
+}
+catch(err){
+    console.log(err);
+    res.status(500).send('failed to change password');
+}
+
+})
 
 app.get('/submit',(req,res)=>{
     if(req.session.user){

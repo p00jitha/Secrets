@@ -1,6 +1,8 @@
 
 body {
-  background-color: #E8ECEF;
+  background-color:violet;
+  font-weight: bold;
+  color: rgb(9, 9, 97);
 }
 
 .centered {
@@ -12,5 +14,8 @@ body {
   text-align: center;
   font-size: 2rem;
   color: #fff;
-  background-color: #000;
+  background-color:rgb(9, 9, 97);
+}
+#homepage{
+  background-color: violet;
 }
